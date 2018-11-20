@@ -1,0 +1,38 @@
+{% set name = "oauthenticator" %}
+{% set version = "0.8.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 39908f01cda98186c0fedc350b68342d6016ee325615f4c8475c1e64a55d9e4f
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - python
+    - jupyterhub >=0.5
+test:
+  imports:
+    - oauthenticator
+
+about:
+  home: https://jupyter.org
+  license: BSD
+  license_family: BSD
+  license_file:
+  summary: OAuthenticator - Authenticate JupyterHub users with common OAuth providers
+  doc_url:
+  dev_url:
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
