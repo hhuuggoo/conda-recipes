@@ -1,0 +1,46 @@
+{% set name = "jupyterhub-kubespawner" %}
+{% set version = "0.9.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 2a8a8bf06d89542feb61d34c23360d246b2aca8bd7c44805e6e3f008e0eb6656
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
+
+requirements:
+  host:
+    - async_generator >=1.8
+    - escapism
+    - jinja2
+    - jupyterhub >=0.8
+    - python-kubernetes ==6.*
+    - pip
+    - python
+    - pyyaml
+  run:
+    - async_generator >=1.8
+    - escapism
+    - jinja2
+    - jupyterhub >=0.8
+    - python-kubernetes ==6.*
+    - python
+    - pyyaml
+
+test:
+  imports:
+    - kubespawner
+
+about:
+  home: http://github.com/jupyterhub/kubespawner
+  license: BSD
+  license_family: BSD
+  license_file:
+  summary: JupyterHub Spawner for Kubernetes
+  doc_url:
+  dev_url:
